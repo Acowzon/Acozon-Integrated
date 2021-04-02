@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://server.moeworkshop.com:3306/Aoxzon?characterEncoding=utf-8&useSSL=false
+    username: AoxzonDev
+    password: 1qaz2wsx
+
+#mybatis的相关配置
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
