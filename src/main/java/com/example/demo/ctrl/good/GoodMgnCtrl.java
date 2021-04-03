@@ -1,9 +1,9 @@
-package com.example.demo.ctrl;
+package com.example.demo.ctrl.good;
 
-import com.example.demo.ctrl.request.GetGoodDetailRequest;
-import com.example.demo.ctrl.response.DefaultWebResponse;
+import com.example.demo.ctrl.good.request.GetGoodDetailRequest;
+import com.example.demo.ctrl.good.response.DefaultWebResponse;
 import com.example.demo.exception.BusinessException;
-import com.example.demo.service.GoodMgnService;
+import com.example.demo.service.good.GoodMgnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
