@@ -5,6 +5,52 @@
 
 <mapper namespace="com.example.demo.mapper.UserMapper">
 
+    <!--查询所有的用户信息-->
+    <select id="queryAllUser" resultType="user">
+        select * from `user`
+    </select>
 
+    <!--根据d查询一个用户信息-->
+    <select id="queryUserById" resultType="user">
+        select * from `user` where user_id = #{id}
+    </select>
+
+    <!--查询用户名和密码是否正确-->
+    <select id="login">
+        select count(*) from `user` where user_name = #{username} and user_pwd = #{pwd}
+    </select>
+
+    <!--查询用户名是否已存在-->
+    <select id="queryUsernameCount">
+        select count(*) from `user` where user_name = #{username}
+    </select>
+
+    <!--插入一个新的用户的信息-->
+    <insert id="addUser" parameterType="user">
+        insert into `user` values(#{userId}, #{userName}, #{userPwd}, #{userRealname}, #{userNickname}, #{userImage},
+        #{userPhone}, #{userEmail}, #{userSex}, #{userBirth}, #{userType}, #{userAddressId}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--修改用户名-->
+    <update id="updateUsername">
+        update `user` set user_name = #{username} where user_id = #{id}
+    </update>
+
+    <!--修改密码-->
+    <update id="updatePwd">
+        update `user` set user_pwd = #{pwd} where user_id = #{id}
+    </update>
+
+    <!--修改一个用户的信息-->
+    <update id="updateUser" parameterType="user">
+        update `user` set user_realname = #{userRealname}, user_nickname = #{userNickname}, user_image = #{userImage},
+        user_phone = #{userPhone}, user_email = #{userEmail}, user_sex = #{userSex}, user_birth = #{userBirth},
+        update_time = #{updateTime} where user_id = #{userId}
+    </update>
+
+    <!--修改一个用户的类型-->
+    <update id="updateUserType">
+        update `user` set user_type = #{userType} where user_id = #{id}
+    </update>
 
 </mapper>
