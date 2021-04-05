@@ -5,12 +5,12 @@ import com.example.demo.ctrl.response.DefaultWebResponse;
 import com.example.demo.ctrl.user.request.CheckUserInfoRequest;
 import com.example.demo.ctrl.user.request.GetUserInfoRequest;
 import com.example.demo.ctrl.user.request.UpdateUserInfoRequest;
-import com.example.demo.entity.UserBean;
 
+
+import com.example.demo.entity.user.UserBean;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +25,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
-
     @RequestMapping("/myAccount")
     public DefaultWebResponse showUserAccount(@RequestBody GetUserInfoRequest request){
         if (request.getUserID().equals("")){
@@ -38,7 +36,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public DefaultWebResponse register(@RequestBody UpdateUserInfoRequest request){
-        int res = this.userService.register(request.getUserName(),request.getPassWord(),request.getUserPhone());
+        int res = this.userService.register(request);
         if (res>0){
 
             return DefaultWebResponse.Builder.fail("user registration failed");
@@ -47,7 +45,7 @@ public class UserController {
     }
 
     @RequestMapping (value = "/doLogin",method = RequestMethod.POST)
-    public DefaultWebResponse doLogin(@RequestBody CheckUserInfoRequest request, HttpServletRequest httpServletRequest, HttpServletResponse response) throws IOException {
+    public DefaultWebResponse doLogin(@RequestBody CheckUserInfoRequest request, HttpServletRequest httpServletRequest, HttpServletResponse response){
         UserBean userBean = this.userService.login(request.getUserID(),request.getPassword(),httpServletRequest,response);
         if (userBean==null){
             return DefaultWebResponse.Builder.fail("login failed");
