@@ -1,6 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.entity.po.User;
+import com.example.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,7 +15,7 @@ public interface UserMapper {
     User queryUserById(@Param("id") String id);
 
     // 查询用户名和密码是否正确,返回查找到的个数
-    int login(@Param("username") String username, @Param("pwd") String pwd);
+    int login(@Param("userId") String userId, @Param("pwd") String pwd);
 
     // 查询用户名是否已存在,返回用户名的个数,为1表示已存在，0表示未存在
     int queryUsernameCount(@Param("username") String username);

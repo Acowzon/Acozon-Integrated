@@ -1,30 +1,24 @@
 package com.example.demo.ctrl.user;
 
 
-import com.example.demo.ctrl.order.request.UpdateOrderStatusRequest;
 import com.example.demo.ctrl.response.DefaultWebResponse;
 import com.example.demo.ctrl.user.request.CheckUserInfoRequest;
 import com.example.demo.ctrl.user.request.GetUserInfoRequest;
 import com.example.demo.ctrl.user.request.UpdateUserInfoRequest;
-
-
 import com.example.demo.dto.user.UserDTO;
-import com.example.demo.entity.po.User;
-import com.example.demo.entity.user.UserBean;
+import com.example.demo.entity.User;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+
+//@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -60,8 +54,8 @@ public class UserController {
     }
 
     @RequestMapping (value = "/doLogin",method = RequestMethod.POST)
-    public DefaultWebResponse doLogin(@RequestBody CheckUserInfoRequest request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        UserDTO res = this.userService.login(request.getUserID(),request.getPassword(),httpServletRequest,httpServletResponse);
+    public DefaultWebResponse doLogin(@RequestBody CheckUserInfoRequest request){
+        UserDTO res = this.userService.login(request.getUserID(),request.getPassword());
         if (res == null){
             return DefaultWebResponse.Builder.fail("login failed");
         }else {

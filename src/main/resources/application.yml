@@ -12,7 +12,7 @@ spring:
 mybatis:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.demo.entity.po
+  type-aliases-package: com.example.demo.entity
   #开启驼峰命名
   configuration:
     map-underscore-to-camel-case: true
