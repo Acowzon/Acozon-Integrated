@@ -2,11 +2,11 @@ package com.example.demo.service.order.serviceImpl;
 
 import com.example.demo.dto.order.OrderDTO;
 import com.example.demo.entity.order.OrderBean;
-import com.example.demo.mapper.order.OrderMapper;
+import com.example.demo.entity.po.Order;
+import com.example.demo.mapper.OrderMapper;
 import com.example.demo.service.order.OrderService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import  java.util.UUID;
 
@@ -19,18 +19,18 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
 
     @Override
-    public int createOrder(String userID, String itemID, int num,double price,String sellerID) {
-        return this.orderMapper.createOrder(UUID.randomUUID().toString(),userID,itemID,num,price,sellerID);
+    public int createOrder(Order order) {
+        return this.orderMapper.addOrder(order);
     }
 
     @Override
     public int deleteOrder(String orderID) {
-        return this.orderMapper.deleteOrder(orderID);
+        return this.orderMapper.delOrderById(orderID);
     }
 
     @Override
     public int updateOrderStatus(String orderID, int status) {
-        return 0;
+        return this.orderMapper.updateOrderState(orderID,status);
     }
 
     @Override
@@ -40,9 +40,17 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public OrderDTO[] showOrderList(String userID) {
-        List<OrderBean> orderBeanList = this.orderMapper.showOrderList(userID);
-        return this.orderMapper.showOrderList(userID).stream().map(order -> {
+    public OrderDTO[] showOrderListByBuyer(String userID) {
+        return this.orderMapper.queryOrderByBuyer(userID).stream().map(order -> {
+            OrderDTO orderDTO = new OrderDTO();
+            BeanUtils.copyProperties(order,orderDTO);
+            return orderDTO;
+        }).toArray(OrderDTO[]::new);
+    }
+
+    @Override
+    public OrderDTO[] showOrderListBySeller(String sellerID){
+        return this.orderMapper.queryOrderByRetailer(sellerID).stream().map(order -> {
             OrderDTO orderDTO = new OrderDTO();
             BeanUtils.copyProperties(order,orderDTO);
             return orderDTO;
@@ -51,9 +59,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO showOrderDetails(String orderID) {
-        OrderBean orderBean = this.orderMapper.showOrderDetails(orderID);
+        Order order = this.orderMapper.queryOrderById(orderID);
         OrderDTO orderDTO = new OrderDTO();
-        BeanUtils.copyProperties(orderBean,orderDTO);
+        BeanUtils.copyProperties(order,orderDTO);
         return  orderDTO;
     }
 }
