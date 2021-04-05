@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
+import  java.util.UUID;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public int createOrder(String userID, String itemID, int num,double price,String sellerID) {
-        return this.orderMapper.createOrder(userID,itemID,num,price,sellerID);
+        return this.orderMapper.createOrder(UUID.randomUUID().toString(),userID,itemID,num,price,sellerID);
     }
 
     @Override
@@ -51,7 +52,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO showOrderDetails(String orderID) {
         OrderBean orderBean = this.orderMapper.showOrderDetails(orderID);
-        orderBean.setTotalCost(orderBean.getItemPrice()*orderBean.getItemNumber());
         OrderDTO orderDTO = new OrderDTO();
         BeanUtils.copyProperties(orderBean,orderDTO);
         return  orderDTO;
