@@ -1,110 +1,106 @@
 package com.example.demo.entity.order;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 订单类 对应订单表
  */
 
-public class OrderBean {
-    private String orderID;
-    private String userID;
-    private String itemID;
-    private String sellerID;
-    private float itemPrice;
-    private int itemNumber;
-    private float totalCost;
-    private Date date;
-    private int status;
+public class OrderBean implements Serializable {
+    private String orderId; // 订单id
+    private String goodsId; // 商品id
+    private String userId;  // 用户id
+    private String retailerId;  // 商家id
+    private int goodsCount; // 商品数量
+    private double goodsPrice;  // 商品单价
+    private double orderPrice;  // 订单价格
+    private int orderState; // 订单状态 0未支付 1已支付 2取消订单
+    private Date orderTime; // 订单创建的时间
 
-    private LogisticsBean logisticsBean;
-    private String imageURL;
-
-    public String getOrderID() {
-        return orderID;
-    }
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
-    }
-    public String getUserID() {
-        return userID;
-    }
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-    public String getItemID() {
-        return itemID;
-    }
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
-    }
-    public float getItemPrice() {
-        return itemPrice;
-    }
-    public void setItemPrice(float itemPrice) {
-        this.itemPrice = itemPrice;
-    }
-    public int getItemNumber() {
-        return itemNumber;
-    }
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
-    }
-    public float getTotalCost() {
-        return totalCost;
-    }
-    public void setTotalCost(float totalCost) {
-        this.totalCost = totalCost;
-    }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    public int getStatus() {
-        return status;
-    }
-    public void setStatus(int status) {
-        this.status = status;
-    }
-    public LogisticsBean getLogisticsBean() {
-        return logisticsBean;
-    }
-    public void setLogisticsBean(LogisticsBean logisticsBean) {
-        this.logisticsBean = logisticsBean;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public String getSellerID() {
-        return sellerID;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
+    public String getGoodsId() {
+        return goodsId;
     }
 
-    @Override
-    public String toString() {
-        return "OrderBean{" +
-                "orderID=" + orderID +
-                ", userID=" + userID +
-                ", itemID=" + itemID +
-                ", itemPrice=" + itemPrice +
-                ", itemNumber=" + itemNumber +
-                ", totalCost=" + totalCost +
-                ", date=" + date +
-                ", status=" + status +
-                ", logisticsBean="  +
-                ", imageURL='" + imageURL + '\'' +
-                '}';
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
+    public String getRetailerId() {
+        return retailerId;
+    }
+
+    public void setRetailerId(String retailerId) {
+        this.retailerId = retailerId;
+    }
+
+    public int getGoodsCount() {
+        return goodsCount;
+    }
+
+    public void setGoodsCount(int goodsCount) {
+        this.goodsCount = goodsCount;
+    }
+
+    public double getGoodsPrice() {
+        return goodsPrice;
+    }
+
+    public void setGoodsPrice(double goodsPrice) {
+        this.goodsPrice = goodsPrice;
+    }
+
+    public double getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(double orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public int getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(int orderState) {
+        this.orderState = orderState;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public OrderBean(String goodsId, String userId, String retailerId, int goodsCount, double goodsPrice, double orderPrice,
+                     int orderState) {
+        this.orderId = UUID.randomUUID().toString();
+        this.goodsId = goodsId;
+        this.userId = userId;
+        this.retailerId = retailerId;
+        this.goodsCount = goodsCount;
+        this.goodsPrice = goodsPrice;
+        this.orderPrice = orderPrice;
+        this.orderState = orderState;
+        this.orderTime = new Date();
+    }
 }

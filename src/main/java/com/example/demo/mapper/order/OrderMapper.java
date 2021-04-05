@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    int createOrder(String userID,String itemID,int num,double price,String sellerID);
+    int createOrder(String orderID, String userID,String itemID,int num,double itemPrice,String sellerID);
 
     int deleteOrder(String orderID);
 
