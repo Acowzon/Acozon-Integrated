@@ -3,7 +3,8 @@ package com.example.demo.service.user.serviceImpl;
 import com.example.demo.ctrl.user.request.UpdateUserInfoRequest;
 import com.example.demo.entity.user.UserBean;
 
-import com.example.demo.mapper.user.UserMapper;
+import com.example.demo.mapper.UserMapper;
+
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

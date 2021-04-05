@@ -1,7 +1,8 @@
 package com.example.demo.service.good;
 
 import com.example.demo.dto.good.GoodDTO;
-import com.example.demo.entity.good.Goods;
+
+import com.example.demo.entity.po.Goods;
 import com.example.demo.exception.BusinessException;
 import com.example.demo.mapper.good.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;

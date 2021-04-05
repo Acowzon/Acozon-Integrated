@@ -1,6 +1,7 @@
 package com.example.demo.mapper.good;
 
-import com.example.demo.entity.good.Comments;
+
+import com.example.demo.entity.po.Comments;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
