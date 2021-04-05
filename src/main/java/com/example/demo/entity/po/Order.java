@@ -32,4 +32,19 @@ public class Order implements Serializable {
         this.orderState = orderState;
         this.orderTime = new Date();
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId='" + orderId + '\'' +
+                ", goodsId='" + goodsId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", retailerId='" + retailerId + '\'' +
+                ", goodsCount=" + goodsCount +
+                ", goodsPrice=" + goodsPrice +
+                ", orderPrice=" + orderPrice +
+                ", orderState=" + orderState +
+                ", orderTime=" + orderTime +
+                '}';
+    }
 }

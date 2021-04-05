@@ -43,7 +43,7 @@
 
     <!--修改一个订单的状态-->
     <update id="updateOrderState">
-        update `order` set order_price = #{price} where order_id = #{id}
+        update `order` set order_state = #{state} where order_id = #{id}
     </update>
 
     <!--删除一个订单-->

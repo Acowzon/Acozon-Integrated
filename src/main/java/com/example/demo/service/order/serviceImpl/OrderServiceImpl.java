@@ -60,6 +60,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO showOrderDetails(String orderID) {
         Order order = this.orderMapper.queryOrderById(orderID);
+        //System.out.println(order.toString());
         OrderDTO orderDTO = new OrderDTO();
         BeanUtils.copyProperties(order,orderDTO);
         return  orderDTO;

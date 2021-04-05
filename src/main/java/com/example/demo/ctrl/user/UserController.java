@@ -69,6 +69,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 先 ：数据库向前端发送用户旧信息
+     * 再 ：用户在旧的信息上改完后返回
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/UpdateMyInfo",method = RequestMethod.POST)
    public DefaultWebResponse updateUserInfo(@RequestBody UpdateUserInfoRequest request){
         User user = new User();
