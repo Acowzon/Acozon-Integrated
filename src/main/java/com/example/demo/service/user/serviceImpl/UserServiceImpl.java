@@ -38,6 +38,7 @@ public class UserServiceImpl  implements UserService {
         int res = this.userMapper.login(userID,password);
         if (res>0){
             User user =  this.userMapper.queryUserById(userID);
+            System.out.println(" sevice "+user.toString());
             UserDTO userDTO = new UserDTO(userID,user.getUserNickname());
             return userDTO;
         }
