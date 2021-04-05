@@ -2,13 +2,14 @@ package com.example.demo.service.order;
 
 
 import com.example.demo.dto.order.OrderDTO;
+import com.example.demo.entity.po.Order;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface OrderService {
 
-    public int createOrder(String userID, String itemID, int num,double price,String sellerID);
+    public int createOrder(Order order);
 
     int deleteOrder(String orderID);
 
@@ -16,7 +17,9 @@ public interface OrderService {
 
     int updateOrderItem(String orderID,String itemID,int num);
 
-    OrderDTO[] showOrderList(@Param("userID") String userID);
+    OrderDTO[] showOrderListByBuyer(String userID);
+
+    OrderDTO[] showOrderListBySeller(String sellerID);
 
     OrderDTO showOrderDetails(String orderID);
     

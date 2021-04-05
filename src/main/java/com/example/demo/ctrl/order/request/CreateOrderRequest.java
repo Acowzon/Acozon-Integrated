@@ -7,6 +7,15 @@ public class CreateOrderRequest {
     private String sellerID;
     private float itemPrice;
     private int itemNumber;
+    private int orderStatus;
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public String getUserID() {
         return userID;

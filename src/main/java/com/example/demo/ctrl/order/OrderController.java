@@ -4,6 +4,8 @@ import com.OrderManagement.test.ctrl.response.DefaultWebResponse;
 import com.example.demo.ctrl.order.request.CreateOrderRequest;
 import com.example.demo.ctrl.order.request.GetOrderDetailRequest;
 import com.example.demo.ctrl.order.request.GetOrderListRequest;
+import com.example.demo.ctrl.order.request.UpdateOrderStatusRequest;
+import com.example.demo.entity.po.Order;
 import com.example.demo.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,9 @@ public class OrderController {
             DefaultWebResponse.Builder.fail("create order request null.");
         }
         return  DefaultWebResponse.Builder.success(this.orderService.createOrder(
-            request.getUserID(),request.getItemID(),request.getItemNumber(),
-                request.getItemPrice(),request.getSellerID()
+                new Order(request.getItemID(),request.getUserID(),request.getSellerID(),
+                        request.getItemNumber(),request.getItemPrice(),
+                        request.getItemNumber()*request.getItemPrice(),request.getOrderStatus())
         ));
     }
 
@@ -40,10 +43,21 @@ public class OrderController {
     public DefaultWebResponse showOrderList(
             @RequestBody GetOrderListRequest request
     ){
-        if (request==null||request.getUserID().equals("")){
+        if (request==null){
             return  DefaultWebResponse.Builder.fail("showOrderList orderID null.");
         }
-        return DefaultWebResponse.Builder.success(this.orderService.showOrderList(request.getUserID()));
+        if (request.getSellerID()!=null){
+            return DefaultWebResponse.Builder.success(this.orderService.showOrderListByBuyer(request.getSellerID()));
+        }else {
+            return DefaultWebResponse.Builder.success(this.orderService.showOrderListByBuyer(request.getUserID()));
+        }
+    }
+
+    public DefaultWebResponse changeOrderStatus(@RequestBody UpdateOrderStatusRequest request){
+        if (request==null){
+            return  DefaultWebResponse.Builder.fail("changeOrderStatus order status null.");
+        }
+        return DefaultWebResponse.Builder.success(this.orderService.updateOrderStatus(request.getOrderID(),request.getStatus()));
     }
 
 
