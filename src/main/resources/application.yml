@@ -4,7 +4,7 @@ spring:
   #数据库连接配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://server.moeworkshop.com:3306/Aoxzon?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://server.moeworkshop.com:3306/Aoxzon?useAffectedRows=TRUE&characterEncoding=utf-8&useSSL=false
     username: AoxzonDev
     password: 1qaz2wsx
 
