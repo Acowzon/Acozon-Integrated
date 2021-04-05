@@ -16,7 +16,6 @@ public class UpdateUserInfoRequest {
     private int userType;   // 用户类型，0买家，1卖家
     private String userAddressId;   // 用户地址
 
-
     public String getUserID() {
         return userID;
     }

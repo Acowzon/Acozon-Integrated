@@ -4,16 +4,16 @@ package com.example.demo.service.user;
 
 
 import com.example.demo.ctrl.user.request.UpdateUserInfoRequest;
-import com.example.demo.entity.user.UserBean;
+import com.example.demo.dto.user.UserDTO;
+import com.example.demo.entity.po.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 
 public interface UserService {
 
-    UserBean getUserInfo(String userID);
-     int updateUserInfo(UpdateUserInfoRequest request);
-    UserBean login(String userID, String password, HttpServletRequest request, HttpServletResponse response);
-    int register(UpdateUserInfoRequest request);
+    User getUserInfo(String userID);
+     int updateUserInfo(User user);
+    UserDTO login(String userID, String password, HttpServletRequest request, HttpServletResponse response);
+    int register(User user);
 }

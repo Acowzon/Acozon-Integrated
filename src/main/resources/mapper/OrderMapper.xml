@@ -28,7 +28,7 @@
     <!--插入一个订单-->
     <insert id="addOrder" parameterType="order">
         insert into `order` values(#{orderId}, #{goodsId}, #{userId}, #{retailerId}, #{goodsCount}, #{goodsPrice},
-         #{orderPrice}, #{orderState}, #{orderTime})
+        #{orderPrice}, #{orderState}, #{orderTime})
     </insert>
 
     <!--修改订单的商品数量-->
