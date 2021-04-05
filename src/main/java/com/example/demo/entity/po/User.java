@@ -8,7 +8,7 @@ import java.util.UUID;
 
 
 @Data
-@NoArgsConstructor
+
 public class User implements Serializable {
     private String userId;  // 用户id
     private String userName;    // 登录用户名
