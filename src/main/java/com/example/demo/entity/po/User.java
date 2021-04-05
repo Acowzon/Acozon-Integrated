@@ -25,6 +25,119 @@ public class User implements Serializable {
     private Date createTime;    // 用户创建时间
     private Date updateTime;    // 用户修改时间
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPwd() {
+        return userPwd;
+    }
+
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
+
+    public String getUserRealname() {
+        return userRealname;
+    }
+
+    public void setUserRealname(String userRealname) {
+        this.userRealname = userRealname;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserSex() {
+        return userSex;
+    }
+
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+
+    public Date getUserBirth() {
+        return userBirth;
+    }
+
+    public void setUserBirth(Date userBirth) {
+        this.userBirth = userBirth;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public String getUserAddressId() {
+        return userAddressId;
+    }
+
+    public void setUserAddressId(String userAddressId) {
+        this.userAddressId = userAddressId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+    public User(){}
+
     public User(String userName, String userPwd, String userRealname, String userNickname, String userImage,
                 String phone, String userEmail, String sex, Date userBirth, int userType, String userAddressId) {
         this.userId = UUID.randomUUID().toString();
