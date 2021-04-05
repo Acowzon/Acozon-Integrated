@@ -53,6 +53,7 @@ public class OrderController {
         }
     }
 
+    @RequestMapping("/changeOrderStatus")
     public DefaultWebResponse changeOrderStatus(@RequestBody UpdateOrderStatusRequest request){
         if (request==null){
             return  DefaultWebResponse.Builder.fail("changeOrderStatus order status null.");
