@@ -1,42 +1,38 @@
-package com.example.demo.dto.good;
+package com.example.demo.ctrl.good.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public class UploadGoodRequest {
 
-import java.util.Date;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class GoodDTO {
-    private  String goodsName;
-    private String goodsTypeId;
-    private double goodsPrice;
-    private String goodsImage;
-    private String goodsSimpleDes;
-    private String goodsDescription;
-    private int goodsInventory;
-    private int soldCount;
-    private int retailerId;
-    private int goodsStarsCount;
-    private int views;
+    private String goodsId; // 商品id
+    private String goodsName; // 商品名称
+    private String goodsTypeId; // 商品类型
+    private double goodsPrice; // 商品价格
+    private String goodsImage; // 商品图片的存储地址
+    private String goodsSimpleDes; // 商品的简单描述
+    private String goodsDescription; // 商品的描述
+    private int goodsInventory; // 商品库存
+    private int retailerId; // 商品上架商家的id
 
     @Override
     public String toString() {
-        return "GoodDTO{" +
-                "goodsName='" + goodsName + '\'' +
+        return "UploadGoodRequest{" +
+                "goodsId='" + goodsId + '\'' +
+                ", goodsName='" + goodsName + '\'' +
                 ", goodsTypeId='" + goodsTypeId + '\'' +
                 ", goodsPrice=" + goodsPrice +
                 ", goodsImage='" + goodsImage + '\'' +
                 ", goodsSimpleDes='" + goodsSimpleDes + '\'' +
                 ", goodsDescription='" + goodsDescription + '\'' +
                 ", goodsInventory=" + goodsInventory +
-                ", soldCount=" + soldCount +
                 ", retailerId=" + retailerId +
-                ", goodsStarsCount=" + goodsStarsCount +
-                ", views=" + views +
                 '}';
+    }
+
+    public String getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getGoodsName() {
@@ -95,35 +91,11 @@ public class GoodDTO {
         this.goodsInventory = goodsInventory;
     }
 
-    public int getSoldCount() {
-        return soldCount;
-    }
-
-    public void setSoldCount(int soldCount) {
-        this.soldCount = soldCount;
-    }
-
     public int getRetailerId() {
         return retailerId;
     }
 
     public void setRetailerId(int retailerId) {
         this.retailerId = retailerId;
-    }
-
-    public int getGoodsStarsCount() {
-        return goodsStarsCount;
-    }
-
-    public void setGoodsStarsCount(int goodsStarsCount) {
-        this.goodsStarsCount = goodsStarsCount;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
     }
 }

@@ -32,4 +32,8 @@ public class GoodMgnService {
             return goodDTO;
         }).toArray(GoodDTO[]::new);
     }
+
+    public int addGood(Goods goods){
+        return  this.goodsMapper.addGoods(goods);
+    }
 }
