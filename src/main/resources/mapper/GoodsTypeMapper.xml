@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.GoodsTypeMapper">
+
+    <!--查询所有的商品类型-->
+    <select id="queryAllType" resultType="goodsType">
+        select * from goods_type
+    </select>
+
+    <!--根据id查询商品类型-->
+    <select id="queryById" resultType="goodsType">
+        select * from goods_type where goods_type_id = #{id}
+    </select>
+
+    <!--插入一个新的商品类型-->
+    <insert id="addType" parameterType="goodsType">
+        insert into goods_type values(#{goodsTypeId}, #{goodsType})
+    </insert>
+
+    <!--删除一个商品类型-->
+    <delete id="delType">
+        delete from goods_type where goods_type_id = #{id}
+    </delete>
+
+    <!--修改一个商品类别-->
+    <delete id="updateType">
+        update goods_type set goods_type = #{type} where goods_type_id = #{id}
+    </delete>
+
+
+</mapper>

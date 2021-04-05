@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.GoodsMapper">
+    <!--排序的sql片段:默认排序方式-->
+    <sql id="OrderByDefault">
+        order by views desc, goods_stars_count desc, sold_count desc, goods_price
+    </sql>
+    <!--排序的sql片段:价格升序方式-->
+    <sql id="OrderByPriceUp">
+        order by goods_price, views desc, goods_stars_count desc, sold_count desc
+    </sql>
+    <!--排序的sql片段:价格降序方式-->
+    <sql id="OrderByPriceDown">
+        order by goods_price desc, views desc, goods_stars_count desc, sold_count desc
+    </sql>
+    <!--排序的sql片段:喜爱数排序方式-->
+    <sql id="OrderByStars">
+        order by goods_stars_count desc, views desc, sold_count desc, goods_price
+    </sql>
+    <!--排序的sql片段:销量排序方式-->
+    <sql id="OrderBySoldCount">
+        order by sold_count desc, views desc, goods_stars_count desc, goods_price
+    </sql>
+
+
+    <!--查询所有的商品-->
+    <select id="queryAllGoods" resultType="goods">
+        select * from goods
+        <include refid="OrderByDefault"/>
+    </select>
+
+    <!--根据map中的条件来查找商品-->
+    <select id="queryGoodsByMap" resultType="goods" parameterType="map">
+        select * from goods
+        <where>
+            <if test="goodsName != null">  and goods_name like #{goodsName}   </if>
+            <if test="maxPrice != null and minPrice != null">  and goods_price between #{minPrice} and #{maxPrice}   </if>
+            <if test="goodTypeId != null">  and goods_type_id = #{goodTypeId}  </if>
+        </where>
+
+        <choose>
+            <when test="orderMethod == 'priceUp'">  <include refid="OrderByPriceUp"/>  </when>
+            <when test="orderMethod == 'priceDown'">  <include refid="OrderByPriceDown"/>  </when>
+            <when test="orderMethod == 'stars'">  <include refid="OrderByStars"/>  </when>
+            <when test="orderMethod == 'soldCount'">  <include refid="OrderBySoldCount"/>  </when>
+            <otherwise> <include refid="OrderByDefault"/>   </otherwise>
+        </choose>
+    </select>
+
+    <!--根据id来查找商品-->
+    <select id="queryGoodsById" resultType="goods">
+        select * from goods where goods_id = #{id}
+    </select>
+
+    <!--根据商家id来查找商品-->
+    <select id="queryGoodsByRetailerId" resultType="goods">
+        select * from goods where retailer_id = #{id}
+    </select>
+
+    <!--添加一个商品-->
+    <insert id="addGoods" parameterType="Goods">
+        insert into goods values(#{goodsId}, #{goodsName}, #{goodsTypeId}, #{goodsPrice}, #{goodsImage}, #{goodsSimpleDes}, #{goodsDescription},
+        #{goodsInventory}, 0, #{retailerId}, 0, 0, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--商品的浏览数views增加-->
+    <update id="addViews">
+        update goods set views = views+1 where goods_id = #{id}
+    </update>
+
+    <!--商品的喜爱数增加-->
+    <update id="addStars">
+        update goods set goods_stars_count = goods_stars_count+1 where goods_id = #{id}
+    </update>
+
+    <!--为指定商品增加销量-->
+    <update id="addSoldCount">
+        update goods set sold_count = sold_count + #{count} where goods_id = #{id}
+    </update>
+
+    <!--为指定商品修改信息-->
+    <update id="updateGoods" parameterType="goods">
+        update goods set goods_name = #{goodsName}, goods_type_id = #{goodsTypeId}, goods_price = #{goodsPrice},
+        goods_image = #{goodsImage}, goods_simple_des = #{goodsSimpleDes}, goods_description = #{goodsDescription},
+        goods_inventory = #{goodsInventory}, update_time = #{updateTime}
+        where goods_id = #{goodsId}
+    </update>
+
+    <!--删除商品-->
+    <delete id="delGoods">
+        delete from goods where goods_id = #{id}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.OrderMapper">
+
+    <!--查询所有的订单-->
+    <select id="queryAllOrder" resultType="order">
+        select * from `order`
+    </select>
+
+    <!--根据id查询订单-->
+    <select id="queryOrderById" resultType="order">
+        select * from `order` where order_id = #{id}
+    </select>
+
+    <!--查询一个买家的所有订单-->
+    <select id="queryOrderByBuyer" resultType="order">
+        select * from `order` where user_id = #{id}
+    </select>
+
+    <!--查询一个卖家的所有订单-->
+    <select id="queryOrderByRetailer" resultType="order">
+        select * from `order` where retailer_id = #{id}
+    </select>
+
+    <!--插入一个订单-->
+    <insert id="addOrder" parameterType="order">
+        insert into `order` values(#{orderId}, #{goodsId}, #{userId}, #{retailerId}, #{goodsCount}, #{goodsPrice},
+         #{orderPrice}, #{orderState}, #{orderTime})
+    </insert>
+
+    <!--修改订单的商品数量-->
+    <update id="updateOrderGoodsCount">
+        update `order` set goods_count = #{count} where order_id = #{orderId}
+    </update>
+
+    <!--修改订单的价格-->
+    <update id="updateOrderPrice">
+        update `order` set goods_count = #{count} where order_id = #{orderId}
+    </update>
+
+    <!--修改一个订单的状态-->
+    <update id="updateOrderState">
+        update `order` set order_price = #{price} where order_id = #{id}
+    </update>
+
+    <!--删除一个订单-->
+    <delete id="delOrderById">
+        delete from `order` where order_id = #{id}
+    </delete>
+
+
+</mapper>
