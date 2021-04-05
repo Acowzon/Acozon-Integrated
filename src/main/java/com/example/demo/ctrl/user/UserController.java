@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/UpdateMyInfo",method = RequestMethod.POST)
-   public DefaultWebResponse updateUserInfo(@RequestBody UpdateOrderStatusRequest request){
+   public DefaultWebResponse updateUserInfo(@RequestBody UpdateUserInfoRequest request){
         User user = new User();
         BeanUtils.copyProperties(request,user);
         int res = this.userService.updateUserInfo(user);
