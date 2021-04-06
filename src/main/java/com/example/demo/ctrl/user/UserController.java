@@ -1,7 +1,7 @@
 package com.example.demo.ctrl.user;
 
 
-import com.example.demo.ctrl.response.DefaultWebResponse;
+import com.example.demo.ctrl.DefaultWebResponse;
 import com.example.demo.ctrl.user.request.CheckUserInfoRequest;
 import com.example.demo.ctrl.user.request.GetUserInfoRequest;
 import com.example.demo.ctrl.user.request.UpdateUserInfoRequest;
@@ -10,6 +10,7 @@ import com.example.demo.entity.User;
 import com.example.demo.service.user.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -18,15 +19,15 @@ import java.util.Date;
 
 
 
-//@CrossOrigin
+@CrossOrigin
 @RestController
-@RequestMapping("/users")
+@RequestMapping("users")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping("/myAccount")
+    @PostMapping("/myAccount")
     public DefaultWebResponse showUserAccount(@RequestBody GetUserInfoRequest request){
         if (request.getUserID().equals("")){
             return DefaultWebResponse.Builder.fail("user ID null");
@@ -35,7 +36,7 @@ public class UserController {
         return  DefaultWebResponse.Builder.success(user);
     }
 
-    @RequestMapping("/register")
+    @PostMapping("/register")
     public DefaultWebResponse register(@RequestBody UpdateUserInfoRequest request) throws ParseException {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         Date birthDate = sf.parse(request.getUserBirth());
@@ -53,7 +54,7 @@ public class UserController {
         return DefaultWebResponse.Builder.success("registration success");
     }
 
-    @RequestMapping (value = "/doLogin",method = RequestMethod.POST)
+    @PostMapping (value = "/doLogin")
     public DefaultWebResponse doLogin(@RequestBody CheckUserInfoRequest request){
         UserDTO res = this.userService.login(request.getUserID(),request.getPassword());
         if (res == null){
@@ -69,7 +70,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/UpdateMyInfo",method = RequestMethod.POST)
+    @PostMapping(value = "/UpdateMyInfo")
    public DefaultWebResponse updateUserInfo(@RequestBody UpdateUserInfoRequest request){
         User user = new User();
         BeanUtils.copyProperties(request,user);

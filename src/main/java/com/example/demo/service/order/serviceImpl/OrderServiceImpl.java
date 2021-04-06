@@ -1,16 +1,12 @@
 package com.example.demo.service.order.serviceImpl;
 
 import com.example.demo.dto.order.OrderDTO;
-import com.example.demo.entity.order.OrderBean;
-import com.example.demo.entity.po.Order;
+import com.example.demo.entity.Order;
 import com.example.demo.mapper.OrderMapper;
 import com.example.demo.service.order.OrderService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import  java.util.UUID;
-
-import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {

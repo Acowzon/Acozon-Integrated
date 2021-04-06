@@ -3,100 +3,100 @@ package com.example.demo.dto.order;
 import java.util.Date;
 
 public class OrderDTO {
-    private String orderID;
-    private String userID;
-    private String itemID;
-    private String sellerID;
-    private float itemPrice;
-    private int itemNumber;
-    private float totalCost;
-    private Date date;
-    private int status;
+    private String orderId; // 订单id
+    private String goodsId; // 商品id
+    private String userId;  // 用户id
+    private String retailerId;  // 商家id
+    private int goodsCount; // 商品数量
+    private double goodsPrice;  // 商品单价
+    private double orderPrice;  // 订单价格
+    private int orderState; // 订单状态 0未支付 1已支付 2取消订单
+    private Date orderTime; // 订单创建的时间
 
-    public String getOrderID() {
-        return orderID;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getGoodsId() {
+        return goodsId;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getItemID() {
-        return itemID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getSellerID() {
-        return sellerID;
+    public String getRetailerId() {
+        return retailerId;
     }
 
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
+    public void setRetailerId(String retailerId) {
+        this.retailerId = retailerId;
     }
 
-    public float getItemPrice() {
-        return itemPrice;
+    public int getGoodsCount() {
+        return goodsCount;
     }
 
-    public void setItemPrice(float itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setGoodsCount(int goodsCount) {
+        this.goodsCount = goodsCount;
     }
 
-    public int getItemNumber() {
-        return itemNumber;
+    public double getGoodsPrice() {
+        return goodsPrice;
     }
 
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
+    public void setGoodsPrice(double goodsPrice) {
+        this.goodsPrice = goodsPrice;
     }
 
-    public float getTotalCost() {
-        return totalCost;
+    public double getOrderPrice() {
+        return orderPrice;
     }
 
-    public void setTotalCost(float totalCost) {
-        this.totalCost = totalCost;
+    public void setOrderPrice(double orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
-    public Date getDate() {
-        return date;
+    public int getOrderState() {
+        return orderState;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrderState(int orderState) {
+        this.orderState = orderState;
     }
 
-    public int getStatus() {
-        return status;
+    public Date getOrderTime() {
+        return orderTime;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
     }
 
     @Override
     public String toString() {
         return "OrderDTO{" +
-                "orderID='" + orderID + '\'' +
-                ", userID='" + userID + '\'' +
-                ", itemID='" + itemID + '\'' +
-                ", sellerID='" + sellerID + '\'' +
-                ", itemPrice=" + itemPrice +
-                ", itemNumber=" + itemNumber +
-                ", totalCost=" + totalCost +
-                ", date=" + date +
-                ", status=" + status +
+                "orderId='" + orderId + '\'' +
+                ", goodsId='" + goodsId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", retailerId='" + retailerId + '\'' +
+                ", goodsCount=" + goodsCount +
+                ", goodsPrice=" + goodsPrice +
+                ", orderPrice=" + orderPrice +
+                ", orderState=" + orderState +
+                ", orderTime=" + orderTime +
                 '}';
     }
 }

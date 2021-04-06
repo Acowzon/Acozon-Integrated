@@ -2,8 +2,8 @@ package com.example.demo.ctrl.good;
 
 import com.example.demo.ctrl.good.request.GetGoodDetailRequest;
 import com.example.demo.ctrl.good.request.UploadGoodRequest;
-import com.example.demo.ctrl.good.response.DefaultWebResponse;
-import com.example.demo.entity.po.Goods;
+import com.example.demo.ctrl.DefaultWebResponse;
+import com.example.demo.entity.Goods;
 import com.example.demo.exception.BusinessException;
 import com.example.demo.service.good.GoodMgnService;
 import org.springframework.beans.factory.annotation.Autowired;

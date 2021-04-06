@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        @import url(test.css);
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <el-container>
+        <el-main>
+            <el-row>
+                <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0"></el-col>
+                <el-card :body-style="{ padding: '0px' }">
+                    <h1 class="grid-content bg-purple-dark">{{ good.goodsName }}</h1>
+                    <img :src="good.goodsImage" class="image">
+                    <el-row>
+                        <el-col :span="4">
+                            <div>价格：{{ good.goodsPrice }}</div>
+                        </el-col>
+                        <el-col :span="15">
+                            <el-col :span="10">
+                                <div>当月售出：{{ good.soldCount }}件</div>
+                            </el-col>
+                            <el-col :span="10">
+                                <div>商品库存：{{ good.goodsInventory }}件</div>
+                            </el-col>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <div>商品详情</div>
+                    </el-row>
+                    <el-row>
+                        <div>{{ good.goodsDescription }}</div>
+                    </el-row>
+                </el-card>
+                </el-col>
+            </el-row>
+        </el-main>
+    </el-container>
+</div>
+<script>
+        const router = new VueRouter({
+            mode: 'history'
+        })
+        new Vue({
+            el: '#app',
+            router,
+            data: function () {
+                return {
+                    good: {}
+                }
+
+            },
+            mounted: function () {
+                this.getGoodDetail();
+            },
+            methods: {
+                getGoodDetail: function () {
+                    axios.post('goods/detail', {
+                        goodId: this.$route.query.id
+                    }, {
+                        baseURL: "http://localhost:8080/",
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest",
+                            "content-type": 'application/json'
+                        }
+                    }).then(response => {
+                        this.good = response.data.data;
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        @import url(test.css);
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <el-row>
+            <el-col :span="8" v-for="good in goodList" :offset=2>
+                <el-card :body-style="{ padding: '0px' }">
+                    <!--img v-bind:src="good.goodsImage" class="image"-->
+                    <div style="padding: 14px;">
+                        <span>{{ good.goodsName }}</span>
+                        <div class="bottom clearfix">
+                            <time class="time">{{ good.goodsSimpleDes }}</time>
+                            <el-button type="text" class="button" v-on:click="jumpToDetail(good.goodsId)">商品详情
+                            </el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
+    <script>
+        const router = new VueRouter({
+            mode: 'history'
+        })
+        new Vue({
+            el: '#app',
+            router,
+            data: function() {
+                return {
+                    goodList: []
+                }
+            },
+            mounted: function() {
+                this.getAllGoods();
+            },
+            methods: {
+                getAllGoods: function() {
+                    axios.post('goods/list', {}, {
+                        baseURL: "http://localhost:8080/",
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest",
+                            "content-type": 'application/json'
+                        }
+                    }).then(response => {
+                        this.goodList = response.data.data;
+                        console.log(this.goodList);
+                    });
+                },
+
+                jumpToDetail(goodId) {
+                    this.$router.push({
+                        path: './detail.html',
+                        query: {
+                            id: goodId
+                        }
+
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

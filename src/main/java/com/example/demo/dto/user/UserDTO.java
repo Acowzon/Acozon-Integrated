@@ -24,4 +24,12 @@ public class UserDTO {
     public void setUserNickName(String userNickName) {
         this.userNickName = userNickName;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userID='" + userID + '\'' +
+                ", userNickName='" + userNickName + '\'' +
+                '}';
+    }
 }

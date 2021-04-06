@@ -1,9 +1,14 @@
-package com.example.demo.ctrl.response;
+package com.example.demo.ctrl;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class DefaultWebResponse {
     private Object data;
     private String status;
-    private String msg; //json
+    private String msg;
 
     public static class Builder {
         public static DefaultWebResponse success(Object data) {

@@ -1,11 +1,11 @@
 package com.example.demo.ctrl.order;
 
 
+import com.example.demo.ctrl.DefaultWebResponse;
 import com.example.demo.ctrl.order.request.CreateOrderRequest;
 import com.example.demo.ctrl.order.request.GetOrderDetailRequest;
 import com.example.demo.ctrl.order.request.GetOrderListRequest;
 import com.example.demo.ctrl.order.request.UpdateOrderStatusRequest;
-import com.example.demo.ctrl.order.response.DefaultWebResponse;
 import com.example.demo.entity.Order;
 import com.example.demo.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

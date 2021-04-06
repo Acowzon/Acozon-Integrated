@@ -2,10 +2,7 @@ package com.example.demo.service.order;
 
 
 import com.example.demo.dto.order.OrderDTO;
-import com.example.demo.entity.po.Order;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.example.demo.entity.Order;
 
 public interface OrderService {
 
