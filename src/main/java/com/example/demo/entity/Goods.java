@@ -1,4 +1,4 @@
-package com.example.demo.entity.po;
+package com.example.demo.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
