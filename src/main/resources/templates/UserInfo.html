@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acowzon-Userinformation</title>
+    <script type="text/javascript" src="./js/vue.js"></script> 
+	  <link rel="stylesheet" href="./css/elment.css">
+	  <script src="./js/elment.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+
+</head>
+<body>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<div>
+    <div id="app">
+             <div class="right">
+               <div class="title">
+				        
+                <el-row>
+                  <el-col :span="3"><div class="grid-content bg-purple"><p class="taskWord"><el-link icon="el-icon-house" href="localhost:8080/goMainPage" target="_blank" type="info" :underline="false">Main Page</el-link></p></div></el-col>
+                  <el-col :span="3"><div class="grid-content bg-purple"><p class="taskWord"><el-link icon="el-icon-s-order" href="localhost:8080/goOrder" target="_blank" type="info" :underline="false">My order</el-link></p></div></el-col>
+                  <el-col :span="3"><div class="grid-content bg-purple"><p class="taskWord"><el-link icon="el-icon-shopping-cart-2" href="https://element.eleme.io" target="_blank" type="info" :underline="false">My shopping cart</el-link></p></div></el-col>
+                  <el-col :span="3"><div class="grid-content bg-purple"><p class="taskWord"><el-link icon="el-icon-chat-line-square" href="https://element.eleme.io" target="_blank" type="info" :underline="false">Comment</el-link></p></div></el-col>
+                <p class="layout">
+                  <el-link href="localhost:8080/" target="_blank" icon="el-icon-user">Log out</el-link>
+                </p>
+                <p class="layout">
+                  <el-link href="https://element.eleme.io" target="_blank" icon="el-icon-message-solid">Message</el-link>
+                </p>
+                <p class="layout">
+                  <el-link href="https://element.eleme.io" target="_blank" icon="el-icon-user-solid">Change account</el-link>
+                </p>
+                </el-row>
+              </div>
+               <div class="boder">
+              <center>
+                <el-row>
+                  <el-col :span="24"><div class="grid-content bg-purple-dark"><p class="TitleWord">Private Info</p></div></el-col>
+                  <el-col :span="20"><div class="grid-content bg-purple"><el-button class="modify" type="primary" round @click="dialogFormVisible = true">modify</el-button></div></el-col>
+                </el-row>
+              </center>
+
+      <el-dialog title="Private info modification" :visible.sync="dialogFormVisible">
+           <el-form :model="infoModifyForm"
+                    ref="infoModifyForm"
+                    class="demo-ruleForm">
+
+            <el-row>
+             <el-col :span="12">
+                <el-form-item label="userImg" :label-width="formLabelWidth">
+                <el-input v-model="userImg" autocomplete="off"></el-input>
+               </el-form-item>
+           </el-col>
+           </el-row>
+
+			   <el-row>
+			      <el-col :span="12">
+					<el-form-item label="nickName" :label-width="formLabelWidth">
+					<el-input v-model="Nickname" autocomplete="off"></el-input>
+             </el-form-item>
+			      </el-col>
+			     <el-col :span="12">
+					 <el-form-item label="name" :label-width="formLabelWidth">
+					   <el-input v-model="name" autocomplete="off"></el-input>
+					 </el-form-item>
+				 </el-col>
+			   </el-row>
+
+             <el-row>
+            <el-col :span="12">
+				    <el-form-item label="性别" :label-width="formLabelWidth">
+				         <el-select v-model="sex" placeholder="your sex">
+				           <el-option label="male" value="male"></el-option>
+				           <el-option label="female" value="female"></el-option>
+				         </el-select>
+				       </el-form-item>
+            <el-form-item label="status" :label-width="formLabelWidth">
+                <el-select v-model="status" placeholder="choose your character">
+                  <el-option label="buyer" value="buyer"></el-option>
+                  <el-option label="seller" value="seller"></el-option>
+                </el-select>
+              </el-form-item>
+			      </el-col>
+            <el-col :span="18">
+				   <el-form-item label="password" :label-width="formLabelWidth">
+				     <el-input v-model="password" autocomplete="off"></el-input>
+				   </el-form-item>
+			   </el-col>
+             </el-row>
+
+             <el-row>
+              <el-col :span="12">
+            <el-form-item label="address" :label-width="formLabelWidth">
+            <el-input v-model="address" autocomplete="off"></el-input>
+               </el-form-item>
+              </el-col>
+             <el-col :span="12">
+             <el-form-item label="birthday" :label-width="formLabelWidth">
+               <el-input v-model="birthday" autocomplete="off"></el-input>
+             </el-form-item>
+           </el-col>
+           </el-row>
+
+             <el-row>
+              <el-col :span="12">
+            <el-form-item label="Email" :label-width="formLabelWidth">
+            <el-input v-model="Email" autocomplete="off"></el-input>
+               </el-form-item>
+              </el-col>
+             <el-col :span="12">
+             <el-form-item label="Phone" :label-width="formLabelWidth">
+               <el-input v-model="Phone" autocomplete="off"></el-input>
+             </el-form-item>
+           </el-col>
+           </el-row>
+
+           </el-form>
+           <div slot="footer" class="dialog-footer">
+             <el-button @click="dialogFormVisible = false">Cancel</el-button>
+             <el-button type="primary" @click="dialogFormVisible = false">Done</el-button>
+           </div>
+         </el-dialog>
+
+         <center>
+          <div>
+            <p class="AccountNumberP aa">Image：</p>
+            
+                    <el-input class="InputBox bb" placeholder="头像：" v-model="userImg" :disabled="true"></el-input>
+                  
+
+          </div>
+
+                <div>
+                   <p class="AccountNumberP">Nickname：</p>
+                    <el-input class="InputBox" placeholder="用户昵称：" v-model="Nickname" :disabled="true"></el-input>
+                  
+
+                 </div>
+                 
+                 
+                 <div>
+                    <p class="AccountNumberP aa">Name：</p>
+                    
+                            <el-input class="InputBox bb" placeholder="姓名：" v-model="name" :disabled="true"></el-input>
+
+                  </div>
+
+
+                 <div>
+                   <p class="AccountNumberP aa">Sex：</p>
+                   
+                    <el-input class="InputBox bb" placeholder="性别：" v-model="sex" :disabled="true"></el-input>
+                  
+
+                 </div>
+
+                 <div>
+                  <p class="AccountNumberP aa">Type：</p>
+                  
+                   <el-input class="InputBox bb" placeholder="身份类型：" v-model="status" :disabled="true"></el-input>
+                 
+
+                </div>
+
+                 <div>
+                   <p class="AccountNumberP aa">Password：</p>
+                   
+                    <el-input class="InputBox bb" placeholder="密码：" v-model="password" :disabled="true"></el-input>
+                  
+
+                 </div>
+
+                 <div>
+                  <p class="AccountNumberP">Address：</p>
+
+                   <el-input class="InputBox" placeholder="用户收货地址：" v-model="Adress" :disabled="true"></el-input>
+                 
+
+                </div>
+
+                <div>
+                  <p class="AccountNumberP">BirthDay：</p>
+
+                   <el-input class="InputBox" placeholder="用户生日：" v-model="birthday" :disabled="true"></el-input>
+                 
+
+                </div>
+
+                <div>
+                  <p class="AccountNumberP">Email：</p>
+
+                   <el-input class="InputBox" placeholder="用户邮箱：" v-model="Email" :disabled="true"></el-input>
+                 
+
+                </div> 
+
+                <div>
+                  <p class="AccountNumberP">Phone：</p>
+
+                   <el-input class="InputBox" placeholder="用户手机号码：" v-model="Phone" :disabled="true"></el-input>
+                 
+
+                </div>
+
+
+                 <div>
+                    <p class="AccountNumberP aa">User-ID：</p>
+                    <!--p th:text="${userPojoImpl.user_id}"></p--->
+                 </div>
+         </center>
+               </div>
+             </div>
+    </div>
+</div>
+</body>
+    
+<script>
+    new Vue({
+        el: '#app',
+        data(){
+            return {
+                      userImg:'xxxxxxxxxxx.png',
+                      Nickname:'user001',
+                      name:'user',
+                      sex:'男/女',
+                      status:'卖家/买家',
+                      password:'123456',
+                      Adress:'x省x市x县x街道x号',
+                      birthday:'x年x月x日',
+                      Email:'xxx@xx.com',
+                      Phone:'00000000000',
+					  dialogTableVisible: false,
+					  dialogFormVisible: false,
+					formLabelWidth: '120px',
+					form: {
+							name: '',
+							  region: '',
+							  date1: '',
+							  date2: '',
+							  delivery: false,
+							  type: [],
+							  resource: '',
+							  desc: ''
+							},
+            }
+        }
+    })
+</script>
+</html>
+<style>
+
+.right{
+  width: 100%;
+  margin-left: 0%;
+  height: 100%;
+}
+  .task{
+    float: left;
+    margin-left: 50px;
+    margin-top: 0px;
+  }
+.taskWord{
+	padding-top: 5px;
+  margin-left: 25%;
+  color: #47484C;
+}
+  .title{
+    background-color: #47484C;
+    height: 50px;
+	width: 100%;
+	position: fixed;
+  }
+  .boder{
+    background-color: #D5D9E5;
+    height: 100%;
+	  padding-top: 50px;
+  }
+  .layout{
+    float: right;
+    margin-right: 20px;
+  }
+  .img{
+	  width: 20px;
+	  height: 20px;
+    padding-top: 20px;
+  }
+  .InputBox{
+    padding-left: 20px;
+    margin-top: 20px;
+    height: 30px;
+    width: 40%;
+    margin-left: 10px;
+    color: #47484C;
+  }
+  .TitleWord{
+    padding: 80px 5% 0 5%;
+    display: inline-block;
+  }
+  .modify{
+    margin-left: 80%;
+    display: inline-block;
+  }
+  .AccountNumberP{
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 5%;
+  }
+  .aa{
+    margin-left: 70px;
+  }
+  .bb{
+	  margin-left: 30px;
+  }
+  .ss{
+	  margin-top: 5px;
+	  transform: rotate(-90deg);
+	  -ms-transform: rotate(-90deg); /* IE 9 */
+	  
+	  -moz-transform: rotate(-90deg); /* Firefox */
+	  
+	  -webkit-transform: rotate(-90deg); /* Safari and Chrome */
+	  
+	  -o-transform: rotate(-90deg); /* Opera */
+  }
+  .titleImg{
+	  margin-left: 20px;
+  }
+  .userImg{
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 50px;
+  }
+</style>
+
