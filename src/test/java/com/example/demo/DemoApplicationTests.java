@@ -30,12 +30,11 @@ class DemoApplicationTests {
     @Test
     void contextLoads() throws ParseException, BusinessException {
 
-        /**
-         * worked
-        GoodDTO[] goodDTOS = goodMgnService.getAllGoods();
+        //worked
+        /*GoodDTO[] goodDTOS = goodMgnService.getAllGoods();
         for(GoodDTO goodDTO:goodDTOS){
             System.out.println(goodDTO.toString());
-        }**/
+        }*/
 
         //GoodDTO goodDTO = goodMgnService.getGoodById("7b51cd91-a06c-43a7-b689-f419df1ef448");
         //System.out.println(goodDTO.toString());
@@ -44,7 +43,7 @@ class DemoApplicationTests {
 
         //User user = new User("syboomsy3","10086", "SY", "sy", "xxx.jpg", "13692165769", "1378681102@qq.com", "m", birthDate, 0, "test-add-id");
         //worked
-        int res = -999;
+        //int res = -999;
         //res = this.userService.register(user);
 
         //worked
