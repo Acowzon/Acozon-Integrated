@@ -39,13 +39,13 @@ public class UserController {
     @PostMapping("/register")
     public DefaultWebResponse register(@RequestBody UpdateUserInfoRequest request) throws ParseException {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-        Date birthDate = sf.parse(request.getUserBirth());
+        Date birthDate = sf.parse("1900-01-01");
         User user = new User(request.getUserName(),
-                request.getUserPwd(),request.getUserRealname(),
-                request.getUserNickname(),request.getUserImage(),
-                request.getPhone(),request.getUserEmail(),
-                request.getSex(), birthDate,
-                request.getUserType(),request.getUserAddressId()
+                request.getUserPwd()," ",
+                " "," ",
+                request.getPhone()," ",
+                " ", birthDate,
+                0," "
         );
         int res = this.userService.register(user);
         if (res>0){
@@ -74,6 +74,8 @@ public class UserController {
    public DefaultWebResponse updateUserInfo(@RequestBody UpdateUserInfoRequest request){
         User user = new User();
         BeanUtils.copyProperties(request,user);
+        user.setUserRealname("   ");
+        user.setUserAddressId("      ");
         int res = this.userService.updateUserInfo(user);
         if (res==0){
             return DefaultWebResponse.Builder.fail("updateUserInfo failed");
